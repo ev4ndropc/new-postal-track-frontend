@@ -67,7 +67,7 @@ const apiFetchGet = async (endpoint, user_token = false) => {
 }
 
 
-const  Api = {
+const  ApiFunctions = {
   signin:async(email, password) => {
     const json = await apiFetchPost(
       '/auth/signin',
@@ -87,4 +87,6 @@ const  Api = {
   },
 }
 
-export default () => Api
+const Api = () => ApiFunctions
+
+export default Api

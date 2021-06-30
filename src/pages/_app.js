@@ -1,7 +1,9 @@
 import Head from 'next/head'
 import { ChakraProvider } from "@chakra-ui/react"
 
-function MyApp({ Component, pageProps }) {
+import '../pages/global.css'
+
+function App ({ Component, pageProps }) {
   return (
     <ChakraProvider>
       <Head>
@@ -13,4 +15,4 @@ function MyApp({ Component, pageProps }) {
   )
 }
 
-export default MyApp
+export default App

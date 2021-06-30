@@ -20,6 +20,8 @@ import {
 
 import { FaEnvelope, FaKey, FaSignInAlt } from 'react-icons/fa'
 
+import Content from '../../../components/Content'
+
 import config from '../../../config'
 import useApi from '../../../helpers/Api'
 import { doLogin } from '../../../helpers/AuthHandler'
@@ -40,7 +42,8 @@ export default function Signin () {
   const [rememberPassword, setRememberPassword] = useState(false)
 
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault()
     setIsInvalid(false)
     if(!email || !password){
       toast({
@@ -84,7 +87,7 @@ export default function Signin () {
   }
 
   return (
-    <Container as={Flex} justifyContent="center" alignItems="center" m="0" p="12px" maxW="100%" bgColor="gray.100" w="100%" h="100vh">
+    <Content>
       <Head>
         <title>Faça o login - {config.SITE_NAME}</title>
       </Head>
@@ -98,87 +101,89 @@ export default function Signin () {
           </Text>
         </Flex>
 
-        <InputGroup>
-          <InputLeftElement
-            pointerEvents="none"
-            mt={{ base: '0', md: '0.3rem' }}
-            color="gray.300"
-            size={size}
-            children={<FaEnvelope/>}
-          />
-          <Input
-            type="email"
-            placeholder="Digite seu e-mail"
-            size={size}
-            focusBorderColor="yellow.300"
-            color="gray.500"
-            onChange={(e) => setEmail(e.target.value)}
-            disabled={loading}
-            isInvalid={isInvalid}
-            errorBorderColor="yellow.300"
-          />
-        </InputGroup>
+        <form method="POST" onSubmit={handleSubmit}>
+          <InputGroup>
+            <InputLeftElement
+              pointerEvents="none"
+              mt={{ base: '0', md: '0.3rem' }}
+              color="gray.300"
+              size={size}
+              children={<FaEnvelope/>}
+            />
+            <Input
+              type="email"
+              placeholder="Digite seu e-mail"
+              size={size}
+              focusBorderColor="yellow.300"
+              color="gray.500"
+              onChange={(e) => setEmail(e.target.value)}
+              disabled={loading}
+              isInvalid={isInvalid}
+              errorBorderColor="yellow.300"
+            />
+          </InputGroup>
 
-        <InputGroup mt="1rem">
-          <InputLeftElement
-            pointerEvents="none"
-            mt={{ base: '0', md: '0.3rem' }}
-            color="gray.300"
-            size={size}
-            children={<FaKey/>}
-          />
-          <Input
-            type="password"
-            placeholder="Digite a sua senha"
-            size={size}
-            focusBorderColor="yellow.300"
-            color="gray.500"
-            onChange={(e) => setPassword(e.target.value)}
-            disabled={loading}
-            isInvalid={isInvalid}
-            errorBorderColor="yellow.300"
-          />
-        </InputGroup>
+          <InputGroup mt="1rem">
+            <InputLeftElement
+              pointerEvents="none"
+              mt={{ base: '0', md: '0.3rem' }}
+              color="gray.300"
+              size={size}
+              children={<FaKey/>}
+            />
+            <Input
+              type="password"
+              placeholder="Digite a sua senha"
+              size={size}
+              focusBorderColor="yellow.300"
+              color="gray.500"
+              onChange={(e) => setPassword(e.target.value)}
+              disabled={loading}
+              isInvalid={isInvalid}
+              errorBorderColor="yellow.300"
+            />
+          </InputGroup>
 
-        <InputGroup mt="1rem">
-          <Checkbox
-            size={size}
-            colorScheme="yellow"
-            color="gray.500"
-            checked={rememberPassword}
-            onChange={(e) => setRememberPassword(!rememberPassword) }
-            disabled={loading}
-          >
-            Lembrar minha senha
-          </Checkbox>
-        </InputGroup>
+          <InputGroup mt="1rem">
+            <Checkbox
+              size={size}
+              colorScheme="yellow"
+              color="gray.500"
+              checked={rememberPassword}
+              onChange={(e) => setRememberPassword(!rememberPassword) }
+              disabled={loading}
+            >
+              Lembrar minha senha
+            </Checkbox>
+          </InputGroup>
 
-        <InputGroup mt="1rem">
-          <Button
-            leftIcon={<FaSignInAlt/>}
-            w="100%"
-            colorScheme="yellow"
-            color="white"
-            onClick={handleSubmit}
-            size={size}
-            disabled={loading}
-            isLoading={loading}
-            loadingText="Entrando..."
-          >
-            Fazer Login
-          </Button>
-        </InputGroup>
+          <InputGroup mt="1rem">
+            <Button
+              type="submit"
+              leftIcon={<FaSignInAlt/>}
+              w="100%"
+              colorScheme="yellow"
+              color="white"
+              size={size}
+              disabled={loading}
+              isLoading={loading}
+              loadingText="Entrando..."
+            >
+              Fazer Login
+            </Button>
+          </InputGroup>
 
-        <Flex justifyContent="center" alignItems="center" flexDirection={flex_direction} mt="1rem" color="gray.500">
-          Não tem uma conta ainda?
-          <Link href="/auth/signup">
-            <Text ml="0.2rem" color="yellow.500" cursor="pointer">
-              Cadastre-se
-            </Text>
-          </Link>
-        </Flex>
+          <Flex justifyContent="center" alignItems="center" flexDirection={flex_direction} mt="1rem" color="gray.500">
+            Não tem uma conta ainda?
+            <Link href="/auth/signup">
+              <Text ml="0.2rem" color="yellow.500" cursor="pointer">
+                Cadastre-se
+              </Text>
+            </Link>
+          </Flex>
+        </form>
       </Box>
 
-    </Container>
+    </Content>
   )
 }
