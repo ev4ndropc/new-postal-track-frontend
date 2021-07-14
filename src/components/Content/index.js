@@ -4,7 +4,7 @@ import {
 
 const Content = ({ children }) => {
     return (
-        <Flex justifyContent="center" alignItems="center" m="0" p="12px" maxW="100%" bgColor="gray.100" w="100%" h="100vh">
+        <Flex m="0" p="0" maxW="100%" bgColor="gray.100" w="100%" h="100vh">
             {children}
         </Flex>
     )

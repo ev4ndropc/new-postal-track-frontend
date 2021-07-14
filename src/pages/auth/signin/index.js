@@ -1,10 +1,8 @@
-import Head from 'next/head'
 import Link from 'next/link'
 
 import { useState } from 'react';
 
 import {
-  Container,
   Box,
   Button,
   Text,
@@ -16,13 +14,13 @@ import {
   InputLeftElement,
   useBreakpointValue,
   useToast,
-  background} from "@chakra-ui/react";
+} from "@chakra-ui/react";
 
 import { FaEnvelope, FaKey, FaSignInAlt } from 'react-icons/fa'
 
 import Content from '../../../components/Content'
+import Header from '../../../components/Header'
 
-import config from '../../../config'
 import useApi from '../../../helpers/Api'
 import { doLogin } from '../../../helpers/AuthHandler'
 
@@ -88,101 +86,100 @@ export default function Signin () {
 
   return (
     <Content>
-      <Head>
-        <title>Faça o login - {config.SITE_NAME}</title>
-      </Head>
+      <Flex w="100%" justifyContent="center" alignItems="center">
+        <Header pageTitle="Faça o login" />
+        <Box maxW="480px" w="100%" p="24px" bgColor="white" boxShadow="md" borderRadius="md">
 
-      <Box maxW="480px" w="100%" p="24px" bgColor="white" boxShadow="md" borderRadius="md">
-
-        <Flex flexDirection="column" justifyContent="center" alignItems="center" mb="2rem">
-          <Img w={{base: '164px', md: '184px', lg: '248px'}} src="/assets/images/logo.png" />
-          <Text color="gray.400" textAlign="center" fontSize={{ base: '14px', sm: '16px', md: '16px', lg: '18px' }}>
-            Bem-vindo, digite o seu email e senha e e clique em entrar para continuar.
-          </Text>
-        </Flex>
-
-        <form method="POST" onSubmit={handleSubmit}>
-          <InputGroup>
-            <InputLeftElement
-              pointerEvents="none"
-              mt={{ base: '0', md: '0.3rem' }}
-              color="gray.300"
-              size={size}
-              children={<FaEnvelope/>}
-            />
-            <Input
-              type="email"
-              placeholder="Digite seu e-mail"
-              size={size}
-              focusBorderColor="yellow.300"
-              color="gray.500"
-              onChange={(e) => setEmail(e.target.value)}
-              disabled={loading}
-              isInvalid={isInvalid}
-              errorBorderColor="yellow.300"
-            />
-          </InputGroup>
-
-          <InputGroup mt="1rem">
-            <InputLeftElement
-              pointerEvents="none"
-              mt={{ base: '0', md: '0.3rem' }}
-              color="gray.300"
-              size={size}
-              children={<FaKey/>}
-            />
-            <Input
-              type="password"
-              placeholder="Digite a sua senha"
-              size={size}
-              focusBorderColor="yellow.300"
-              color="gray.500"
-              onChange={(e) => setPassword(e.target.value)}
-              disabled={loading}
-              isInvalid={isInvalid}
-              errorBorderColor="yellow.300"
-            />
-          </InputGroup>
-
-          <InputGroup mt="1rem">
-            <Checkbox
-              size={size}
-              colorScheme="yellow"
-              color="gray.500"
-              checked={rememberPassword}
-              onChange={(e) => setRememberPassword(!rememberPassword) }
-              disabled={loading}
-            >
-              Lembrar minha senha
-            </Checkbox>
-          </InputGroup>
-
-          <InputGroup mt="1rem">
-            <Button
-              type="submit"
-              leftIcon={<FaSignInAlt/>}
-              w="100%"
-              colorScheme="yellow"
-              color="white"
-              size={size}
-              disabled={loading}
-              isLoading={loading}
-              loadingText="Entrando..."
-            >
-              Fazer Login
-            </Button>
-          </InputGroup>
-
-          <Flex justifyContent="center" alignItems="center" flexDirection={flex_direction} mt="1rem" color="gray.500">
-            Não tem uma conta ainda?
-            <Link href="/auth/signup">
-              <Text ml="0.2rem" color="yellow.500" cursor="pointer">
-                Cadastre-se
-              </Text>
-            </Link>
+          <Flex flexDirection="column" justifyContent="center" alignItems="center" mb="2rem">
+            <Img w={{base: '164px', md: '184px', lg: '248px'}} src="/assets/images/logo.png" />
+            <Text color="gray.400" textAlign="center" fontSize={{ base: '14px', sm: '16px', md: '16px', lg: '18px' }}>
+              Bem-vindo, digite o seu email e senha e e clique em entrar para continuar.
+            </Text>
           </Flex>
-        </form>
-      </Box>
+
+          <form method="POST" onSubmit={handleSubmit}>
+            <InputGroup>
+              <InputLeftElement
+                pointerEvents="none"
+                mt={{ base: '0', md: '0.3rem' }}
+                color="gray.300"
+                size={size}
+                children={<FaEnvelope/>}
+              />
+              <Input
+                type="email"
+                placeholder="Digite seu e-mail"
+                size={size}
+                focusBorderColor="yellow.300"
+                color="gray.500"
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={loading}
+                isInvalid={isInvalid}
+                errorBorderColor="yellow.300"
+              />
+            </InputGroup>
+
+            <InputGroup mt="1rem">
+              <InputLeftElement
+                pointerEvents="none"
+                mt={{ base: '0', md: '0.3rem' }}
+                color="gray.300"
+                size={size}
+                children={<FaKey/>}
+              />
+              <Input
+                type="password"
+                placeholder="Digite a sua senha"
+                size={size}
+                focusBorderColor="yellow.300"
+                color="gray.500"
+                onChange={(e) => setPassword(e.target.value)}
+                disabled={loading}
+                isInvalid={isInvalid}
+                errorBorderColor="yellow.300"
+              />
+            </InputGroup>
+
+            <InputGroup mt="1rem">
+              <Checkbox
+                size={size}
+                colorScheme="yellow"
+                color="gray.500"
+                checked={rememberPassword}
+                onChange={(e) => setRememberPassword(!rememberPassword) }
+                disabled={loading}
+              >
+                Lembrar minha senha
+              </Checkbox>
+            </InputGroup>
+
+            <InputGroup mt="1rem">
+              <Button
+                type="submit"
+                leftIcon={<FaSignInAlt/>}
+                w="100%"
+                colorScheme="yellow"
+                color="white"
+                size={size}
+                disabled={loading}
+                isLoading={loading}
+                loadingText="Entrando..."
+              >
+                Fazer Login
+              </Button>
+            </InputGroup>
+
+            <Flex justifyContent="center" alignItems="center" flexDirection={flex_direction} mt="1rem" color="gray.500">
+              Não tem uma conta ainda?
+              <Link href="/auth/signup">
+                <Text ml="0.2rem" color="yellow.500" cursor="pointer">
+                  Cadastre-se
+                </Text>
+              </Link>
+            </Flex>
+          </form>
+        </Box>
+      </Flex>
 
     </Content>
   )

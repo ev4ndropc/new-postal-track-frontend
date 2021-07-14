@@ -20,7 +20,9 @@ import {
 import { FaUserAlt, FaEnvelope, FaKey, FaRocket } from 'react-icons/fa'
 import { IoLogoWhatsapp } from 'react-icons/io'
 
-import config from '../../../config'
+import Content from '../../../components/Content'
+import Header from '../../../components/Header'
+
 import useApi from '../../../helpers/Api'
 import { doLogin } from '../../../helpers/AuthHandler'
 
@@ -111,160 +113,160 @@ export default function Signin () {
 
 
   return (
-    <Container as={Flex} justifyContent="center" alignItems="center" m="0" p="12px" maxW="100%" bgColor="gray.100" w="100%" h="100%">
-      <Head>
-        <title>Crie sua conta grátis - {config.SITE_NAME}</title>
-      </Head>
+    <Content>
+      <Flex w="100%" justifyContent="center" alignItems="center">
+        <Header pageTitle="Crie sua conta grátis" />
 
-      <Box maxW="480px" w="100%" p="24px" bgColor="white" boxShadow="md" borderRadius="md">
+        <Box maxW="480px" w="100%" p="24px" bgColor="white" boxShadow="md" borderRadius="md">
 
-        <Flex flexDirection="column" justifyContent="center" alignItems="center" mb="2rem">
-          <Img w={{base: '164px', md: '184px', lg: '248px'}} src="/assets/images/logo.png" />
-          <Text color="gray.400" textAlign="center" fontSize={{ base: '14px', sm: '16px', md: '16px', lg: '18px' }}>
-            Para fazer parte da Postal Track é muito simples, digite seus dados abaixo e crie sua conta gratuitamente.
-          </Text>
-        </Flex>
-
-        <InputGroup>
-          <InputLeftElement
-            pointerEvents="none"
-            mt={{ base: '0', md: '0.3rem' }}
-            color="gray.300"
-            size={size}
-            children={<FaUserAlt/>}
-          />
-          <Input
-            type="text"
-            placeholder="Digite seu nome completo"
-            size={size}
-            focusBorderColor="yellow.300"
-            color="gray.500"
-            onChange={(e) => setName(e.target.value)}
-            disabled={loading}
-            isInvalid={isInvalid}
-            errorBorderColor="yellow.300"
-          />
-        </InputGroup>
-
-        <InputGroup mt="1rem">
-          <InputLeftElement
-            pointerEvents="none"
-            mt={{ base: '0', md: '0.3rem' }}
-            color="gray.300"
-            size={size}
-            children={<FaEnvelope/>}
-          />
-          <Input
-            type="email"
-            placeholder="Digite seu e-mail"
-            size={size}
-            focusBorderColor="yellow.300"
-            color="gray.500"
-            onChange={(e) => setEmail(e.target.value)}
-            disabled={loading}
-            isInvalid={isInvalid}
-            errorBorderColor="yellow.300"
-          />
-        </InputGroup>
-
-        <InputGroup mt="1rem">
-          <InputLeftElement
-            pointerEvents="none"
-            mt={{ base: '0', md: '0.3rem' }}
-            color="gray.300"
-            size={size}
-            children={<FaKey/>}
-          />
-          <Input
-            type="password"
-            placeholder="Digite a sua senha"
-            size={size}
-            focusBorderColor="yellow.300"
-            color="gray.500"
-            onChange={(e) => setPassword(e.target.value)}
-            disabled={loading}
-            isInvalid={isInvalid}
-            errorBorderColor="yellow.300"
-          />
-        </InputGroup>
-
-        <InputGroup mt="1rem">
-          <InputLeftElement
-            pointerEvents="none"
-            mt={{ base: '0', md: '0.3rem' }}
-            color="gray.300"
-            size={size}
-            children={<FaKey/>}
-          />
-          <Input
-            type="password"
-            placeholder="Repita sua senha"
-            size={size}
-            focusBorderColor="yellow.300"
-            color="gray.500"
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            disabled={loading}
-            isInvalid={isInvalid}
-            errorBorderColor="yellow.300"
-          />
-        </InputGroup>
-
-        <InputGroup mt="1rem">
-          <InputLeftElement
-            pointerEvents="none"
-            mt={{ base: '0', md: '0.3rem' }}
-            color="gray.300"
-            size={size}
-            children={<IoLogoWhatsapp/>}
-          />
-          <Input
-            type="tel"
-            placeholder="Digite seu número de Whatsapp"
-            size={size}
-            focusBorderColor="yellow.300"
-            color="gray.500"
-            onChange={(e) => setPhone(e.target.value)}
-            disabled={loading}
-            maxLength="13"
-            isInvalid={isInvalid}
-            errorBorderColor="yellow.300"
-          />
-        </InputGroup>
-
-        <InputGroup mt="1rem">
-          <Checkbox size={size} colorScheme="yellow" color="gray.500" onChange={(e) => setCheckedTerms(!checkedTerms)}>
-            <Flex>
-              Eu concordo com os <Link href="/terms"><Text color="yellow.500" ml="0.3rem">termos de uso e privacidade</Text></Link>
-            </Flex>
-          </Checkbox>
-        </InputGroup>
-
-        <InputGroup mt="1rem">
-          <Button
-            leftIcon={<FaRocket/>}
-            w="100%"
-            colorScheme="yellow"
-            color="white"
-            size={size}
-            disabled={loading}
-            isLoading={loading}
-            loadingText="Criando sua conta..."
-            onClick={handleSubmit}
-          >
-            Criar minha conta
-          </Button>
-        </InputGroup>
-
-        <Flex justifyContent="center" alignItems="center" flexDirection={flex_direction} mt="1rem" color="gray.500">
-          Já tem uma conta ainda?
-          <Link href="/auth/signin">
-            <Text ml="0.2rem" color="yellow.500" cursor="pointer">
-                Ir para o Login
+          <Flex flexDirection="column" justifyContent="center" alignItems="center" mb="2rem">
+            <Img w={{base: '164px', md: '184px', lg: '248px'}} src="/assets/images/logo.png" />
+            <Text color="gray.400" textAlign="center" fontSize={{ base: '14px', sm: '16px', md: '16px', lg: '18px' }}>
+              Para fazer parte da Postal Track é muito simples, digite seus dados abaixo e crie sua conta gratuitamente.
             </Text>
-          </Link>
-        </Flex>
-      </Box>
+          </Flex>
 
-    </Container>
+          <InputGroup>
+            <InputLeftElement
+              pointerEvents="none"
+              mt={{ base: '0', md: '0.3rem' }}
+              color="gray.300"
+              size={size}
+              children={<FaUserAlt/>}
+            />
+            <Input
+              type="text"
+              placeholder="Digite seu nome completo"
+              size={size}
+              focusBorderColor="yellow.300"
+              color="gray.500"
+              onChange={(e) => setName(e.target.value)}
+              disabled={loading}
+              isInvalid={isInvalid}
+              errorBorderColor="yellow.300"
+            />
+          </InputGroup>
+
+          <InputGroup mt="1rem">
+            <InputLeftElement
+              pointerEvents="none"
+              mt={{ base: '0', md: '0.3rem' }}
+              color="gray.300"
+              size={size}
+              children={<FaEnvelope/>}
+            />
+            <Input
+              type="email"
+              placeholder="Digite seu e-mail"
+              size={size}
+              focusBorderColor="yellow.300"
+              color="gray.500"
+              onChange={(e) => setEmail(e.target.value)}
+              disabled={loading}
+              isInvalid={isInvalid}
+              errorBorderColor="yellow.300"
+            />
+          </InputGroup>
+
+          <InputGroup mt="1rem">
+            <InputLeftElement
+              pointerEvents="none"
+              mt={{ base: '0', md: '0.3rem' }}
+              color="gray.300"
+              size={size}
+              children={<FaKey/>}
+            />
+            <Input
+              type="password"
+              placeholder="Digite a sua senha"
+              size={size}
+              focusBorderColor="yellow.300"
+              color="gray.500"
+              onChange={(e) => setPassword(e.target.value)}
+              disabled={loading}
+              isInvalid={isInvalid}
+              errorBorderColor="yellow.300"
+            />
+          </InputGroup>
+
+          <InputGroup mt="1rem">
+            <InputLeftElement
+              pointerEvents="none"
+              mt={{ base: '0', md: '0.3rem' }}
+              color="gray.300"
+              size={size}
+              children={<FaKey/>}
+            />
+            <Input
+              type="password"
+              placeholder="Repita sua senha"
+              size={size}
+              focusBorderColor="yellow.300"
+              color="gray.500"
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              disabled={loading}
+              isInvalid={isInvalid}
+              errorBorderColor="yellow.300"
+            />
+          </InputGroup>
+
+          <InputGroup mt="1rem">
+            <InputLeftElement
+              pointerEvents="none"
+              mt={{ base: '0', md: '0.3rem' }}
+              color="gray.300"
+              size={size}
+              children={<IoLogoWhatsapp/>}
+            />
+            <Input
+              type="tel"
+              placeholder="Digite seu número de Whatsapp"
+              size={size}
+              focusBorderColor="yellow.300"
+              color="gray.500"
+              onChange={(e) => setPhone(e.target.value)}
+              disabled={loading}
+              maxLength="13"
+              isInvalid={isInvalid}
+              errorBorderColor="yellow.300"
+            />
+          </InputGroup>
+
+          <InputGroup mt="1rem">
+            <Checkbox size={size} colorScheme="yellow" color="gray.500" onChange={(e) => setCheckedTerms(!checkedTerms)}>
+              <Flex>
+                Eu concordo com os <Link href="/terms"><Text color="yellow.500" ml="0.3rem">termos de uso e privacidade</Text></Link>
+              </Flex>
+            </Checkbox>
+          </InputGroup>
+
+          <InputGroup mt="1rem">
+            <Button
+              leftIcon={<FaRocket/>}
+              w="100%"
+              colorScheme="yellow"
+              color="white"
+              size={size}
+              disabled={loading}
+              isLoading={loading}
+              loadingText="Criando sua conta..."
+              onClick={handleSubmit}
+            >
+              Criar minha conta
+            </Button>
+          </InputGroup>
+
+          <Flex justifyContent="center" alignItems="center" flexDirection={flex_direction} mt="1rem" color="gray.500">
+            Já tem uma conta ainda?
+            <Link href="/auth/signin">
+              <Text ml="0.2rem" color="yellow.500" cursor="pointer">
+                  Ir para o Login
+              </Text>
+            </Link>
+          </Flex>
+        </Box>
+      </Flex>
+
+    </Content>
   )
 }
