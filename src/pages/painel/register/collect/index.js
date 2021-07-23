@@ -65,7 +65,7 @@ const RegisterCollect = () => {
                                         <FormLabel>Canal de vendas</FormLabel>
                                         <InputGroup size="lg">
                                             <InputLeftAddon children={<RiStore2Line/>} />
-                                            <Select placeholder="Selecione o canal de vendas">
+                                            <Select borderTopLeftRadius="none" borderBottomLeftRadius="none" placeholder="Selecione o canal de vendas">
                                                 <option value="option1">MercadoLivre</option>
                                                 <option value="option2">Shopee</option>
                                                 <option value="option3">Amazon</option>

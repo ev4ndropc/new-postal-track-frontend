@@ -63,7 +63,7 @@ const Sidebar = () => {
                             <Text ml="1rem">Inicio</Text>
                         </ListItem>
                     </Link>
-                    <Link href="/painel/customers">
+                    {/* <Link href="/painel/customers">
                         <ListItem 
                             display="Flex"
                             alignItems="center" 
@@ -79,7 +79,7 @@ const Sidebar = () => {
                             <FiUsers size="22px" color="yellow.500" />
                             <Text ml="1rem">Clientes</Text>
                         </ListItem>
-                    </Link>
+                    </Link> */}
                     <Link href="/painel/list/package">
                         <ListItem 
                             display="Flex"

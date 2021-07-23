@@ -26,6 +26,7 @@ const Topbar = () => {
             p="0 24px" 
             alignItems="center" 
             justifyContent="space-between"
+            zIndex="99"
         >
             <Flex>
                 <Button>
@@ -52,11 +53,11 @@ const Topbar = () => {
                         fontSize="12px"
                         color="white"
                         fontWeight="700"
-                    >99+</chakra.span>
+                    >100+</chakra.span>
                 </Button>
 
-                <Menu cursor="pointer" >
-                    <MenuButton as={Avatar} src="https://postaltrack.com.br/img/avatars/avatar1592514063706.png" />
+                <Menu >
+                    <MenuButton cursor="pointer"  as={Avatar} src="https://postaltrack.com.br/img/avatars/avatar1592514063706.png" />
                     <MenuList>
                         <MenuItem>
                             <CgProfile size="20px" />

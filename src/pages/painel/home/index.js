@@ -109,7 +109,16 @@ export const getServerSideProps = async (context) => {
   
     cookies = context.req.headers.cookie
 
-    cookies = cookie.parse(cookies)
+    try {
+        cookies = cookie.parse(cookies)
+    } catch (error) {
+        return {
+            redirect: {
+                permanent: false,
+                destination: '/auth/signin'
+              }
+          }
+    }
     
     
     if(!cookies.token){
