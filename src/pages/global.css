@@ -19,3 +19,21 @@ html {
 #__next {
     height: 100%;
 }
+
+.track_path div:nth-child(2) div:last-child>div>div:before {
+    display: none;
+}
+
+.track_path div:nth-child(2)>div>div div:nth-child(1) {
+    position: relative;
+}
+
+.track_path div:nth-child(2)>div>div div:nth-child(1):before {
+    content: '';
+    position: absolute;
+    bottom: -32px;
+    left: 54px;
+    width: 8px;
+    height: 32px;
+    background: #edf2f7;
+}

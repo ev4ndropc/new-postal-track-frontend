@@ -75,8 +75,8 @@ const VerifyCollect = () => {
                             </Flex>
                         </Flex>
                         <Flex w="100%" m="0.5rem 0" p="12px">
-                            <Button m="0.5rem 0" colorScheme="green">Marcar como coletado</Button>
-                            <Button m="0.5rem 0" colorScheme="yellow">Marcar como nao coletado</Button>
+                            <Button m="0.5rem 0.25rem 0 0" colorScheme="green">Marcar como coletado</Button>
+                            <Button m="0.5rem 0 0 0.25rem" colorScheme="yellow">Marcar como nao coletado</Button>
                         </Flex>
                         <Table variant="simple">
                             <Thead>

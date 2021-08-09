@@ -157,9 +157,38 @@ const  ApiFunctions = {
     return json
   },
 
+  searchPackage:async(type, searchPackage) => {
+    const json = await apiFetchGet(
+      `/search/package?type=${type}&searchFor=${searchPackage}`,
+      {},
+      true
+    )
+    return json
+  },
+
   deletePackage:async(id) => {
     const json = await apiFetchDelete(
       `/delete/package?id=${id}`,
+      {},
+      true
+    )
+
+    return json
+  },
+
+  deleteAllPackage:async() => {
+    const json = await apiFetchDelete(
+      `/delete/package/all`,
+      {},
+      true
+    )
+
+    return json
+  },
+
+  deleteAllDeliveredPackage:async() => {
+    const json = await apiFetchDelete(
+      `/delete/package/all_delivered`,
       {},
       true
     )
@@ -191,6 +220,16 @@ const  ApiFunctions = {
     const json = await apiFetchPut(
       `/edit/package`,
       data,
+      true
+    )
+
+    return json
+  },
+
+  trackingCode:async(code) => {
+    const json = await apiFetchGet(
+      `/tracking/code?code=${code}`,
+      {},
       true
     )
 

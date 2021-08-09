@@ -21,6 +21,7 @@ import Header from '../../../../components/Header'
 import Content from '../../../../components/Content'
 import Topbar from '../../../../components/Topbar'
 import Sidebar from '../../../../components/Sidebar'
+import Barcode from '../../../../components/Barcode'
 
 const RegisterCollect = () => {
     return (
@@ -50,6 +51,7 @@ const RegisterCollect = () => {
                         <Flex w="100%" bgColor="gray.200" p="12px" >
                             <Text fontSize="18px">Registrar Coleta</Text>
                         </Flex>
+                        <Barcode/>
                         <Flex w="100%" m="2rem 0" p="12px 24px" flexDir="column">
                             <chakra.form method="POST" w="100%" display="flex" flexDir="column">
                                 <Flex w="100%" flexDir="row">

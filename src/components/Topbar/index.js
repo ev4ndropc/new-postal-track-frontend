@@ -50,10 +50,10 @@ const Topbar = () => {
                         display="flex"
                         justifyContent="center"
                         alignItems="center"
-                        fontSize="12px"
+                        fontSize="10px"
                         color="white"
                         fontWeight="700"
-                    >100+</chakra.span>
+                    >99+</chakra.span>
                 </Button>
 
                 <Menu >
