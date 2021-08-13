@@ -20,6 +20,14 @@ html {
     height: 100%;
 }
 
+button {
+    box-shadow: none;
+}
+
+button:focus {
+    box-shadow: none;
+}
+
 .track_path div:nth-child(2) div:last-child>div>div:before {
     display: none;
 }
@@ -37,3 +45,7 @@ html {
     height: 32px;
     background: #edf2f7;
 }
+
+.container-menu::-webkit-scrollbar {
+    display: none;
+  }

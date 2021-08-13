@@ -234,7 +234,98 @@ const  ApiFunctions = {
     )
 
     return json
-  }
+  },
+
+  getSalesChannel:async () => {
+    const json = await apiFetchGet(
+      `/get/sales_channel`,
+      {},
+      true
+    )
+
+    return json
+  },
+
+  addSalesChannel:async (sale_channel_name) => {
+    const json = await apiFetchPost(
+      `/add/sales_channel?sale_channel_name=${sale_channel_name}`,
+      {},
+      true
+    )
+
+    return json
+  },
+
+  listCollects:async(page, searchDate) => {
+    if(searchDate == undefined) {
+      const json = await apiFetchGet(
+        `/list/collects?page=${page}`,
+        {},
+        true
+      )
+  
+      return json
+    }else{
+      const json = await apiFetchGet(
+        `/list/collects?page=${page}&search_date=${searchDate}`,
+        {},
+        true
+      )
+  
+      return json
+    }
+  },
+
+  findCollect:async(identifier) => {
+    const json = await apiFetchGet(
+      `/find/collects?identifier=${identifier}`,
+      {},
+      true
+    )
+
+    return json
+  },
+
+  addCollect:async (identifier, sale_channel) => {
+    const json = await apiFetchPost(
+      `/add/collect?identifier=${identifier}&sale_channel=${sale_channel}`,
+      {},
+      true
+    )
+
+    return json
+  },
+
+  deleteCollect:async (identifier) => {
+    const json = await apiFetchDelete(
+      `/delete/collect?identifier=${identifier}`,
+      {},
+      true
+    )
+
+    return json
+  },
+
+  markAsCollected:async (identifier) => {
+    const json = await apiFetchPost(
+      `/mark_as_collected/collect`,
+      {identifier},
+      true
+    )
+
+    return json
+  },
+
+  markAsNotCollected:async (identifier) => {
+    const json = await apiFetchPost(
+      `/mark_as_not_collected/collect`,
+      {identifier},
+      true
+    )
+
+    return json
+  },
+
 
 
 }

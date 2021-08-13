@@ -1,46 +1,23 @@
-import React, { Component } from 'react'
-import QrReader from 'react-qr-scanner'
+import React from 'react'
+import BarcodeScannerComponent from "react-qr-barcode-scanner";
+import { Button, chakra, Flex, Text } from '@chakra-ui/react'
 
-class Test extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      delay: 100,
-      result: 'No result',
-    }
-
-    this.handleScan = this.handleScan.bind(this)
-  }
-  handleScan(data){
-    this.setState({
-      result: data,
-    })
-  }
-  handleError(err){
-    console.error(err)
-  }
-  render(){
-    if (typeof window === 'object') {
-      const previewStyle = {
-        height: 40,
-        width: '100%',
-      }
-  
-      return(
-        <div>
-          <QrReader
-            delay={this.state.delay}
-            style={previewStyle}
-            onError={this.handleError}
-            onScan={this.handleScan}
-            />
-          <p>{this.state.result}</p>
-        </div>
-      )
-    }else{
-      return null
-    }
-  }
+function BarReader(props) {
+  return (
+    <chakra.div p="24px" w="100%" height="150px" overflow="hidden" display="flex" justifyContent="center" alignItems="center" mt="2rem" >
+      <BarcodeScannerComponent
+        width={'100%'}
+        height={150}
+        onUpdate={(err, result) => {
+          if (result) {
+            props.setData(result.text)
+            return props.handleSubmit()
+          }
+          else null
+        }}
+      />
+    </chakra.div>
+  );
 }
 
-export default Test
+export default BarReader;

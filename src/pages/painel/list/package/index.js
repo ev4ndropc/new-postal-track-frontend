@@ -229,7 +229,6 @@ const ListPackage = () => {
         setEditPackage(code)
         onOpen()
         const res = await api.getPackage(code)
-        console.log(res)
         setEditPackageName(res.data.client_name)
         setEditPackageNumber(res.data.client_number)
         setEditPackageCode(res.data.code)
@@ -333,7 +332,7 @@ const ListPackage = () => {
                     </Flex>
                     <Flex background="#fff" flexDir="column" boxShadow="md" borderRadius="md" pb="4rem" w="100%">
                         <Flex w="100%" bg="gray.200" p=".75rem 1.25rem" justifyContent="space-between">
-                            <Text fontSize="26px" fontWeight="bold">Pacotes</Text>
+                            <Text fontSize="24px" fontWeight="bold">Pacotes</Text>
                             <Flex>
                                 <form onSubmit={handleSearchPackage}>
                                     <Input value={searchPackage} onChange={e=>setSearchPackage(e.target.value)} bg="white" placeholder="Procurar..." />

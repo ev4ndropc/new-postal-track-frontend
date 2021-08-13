@@ -8,16 +8,19 @@ import {
     MenuList,
     MenuItem,
     MenuDivider,
-    chakra
+    chakra,
+    Badge
 } from '@chakra-ui/react'  
 
 import { HiOutlineMenuAlt1 } from 'react-icons/hi'
-import { BsBell } from 'react-icons/bs'
 import { BiMoon, BiHelpCircle } from 'react-icons/bi'
 import { CgProfile } from 'react-icons/cg'
 import { VscSignOut } from 'react-icons/vsc'
+import { FaCoins } from 'react-icons/fa'
 
-const Topbar = () => {
+import Notification from '../Notification'
+
+const Topbar = (props) => {
     return (
         <Flex 
             bgColor="#fff" 
@@ -27,9 +30,10 @@ const Topbar = () => {
             alignItems="center" 
             justifyContent="space-between"
             zIndex="99"
+            transition="0.2s"
         >
             <Flex>
-                <Button>
+                <Button >
                     <HiOutlineMenuAlt1 size="20px" />
                 </Button>
             </Flex>
@@ -37,24 +41,15 @@ const Topbar = () => {
                 <Button mr="1rem">
                     <BiMoon size="26px" />
                 </Button>
-                <Button mr="1rem">
-                    <BsBell size="26px" />
-                    <chakra.span 
-                        bgColor="red" 
-                        w="24px" 
-                        h="24px" 
-                        borderRadius="50%" 
-                        position="absolute"
-                        top="-14px"
-                        right="-2px"
-                        display="flex"
-                        justifyContent="center"
-                        alignItems="center"
-                        fontSize="10px"
-                        color="white"
-                        fontWeight="700"
-                    >99+</chakra.span>
-                </Button>
+
+                <Notification/>
+
+                <Flex mr="1rem" flexDir="column" justifyContent="center" alignItems="center">
+                    <Button color="text.primary" _hover={{ color: "white", background: "green.300" }}>
+                        <FaCoins size="20px" />
+                        <Text ml="0.5rem">R$ 497.15</Text>
+                    </Button>
+                </Flex>
 
                 <Menu >
                     <MenuButton cursor="pointer"  as={Avatar} src="https://postaltrack.com.br/img/avatars/avatar1592514063706.png" />

@@ -119,7 +119,7 @@ const AddPackage = () => {
                 >
                     <Flex background="#fff" w="100%" boxShadow="md" borderRadius="md" flexDir="column">
                         <Flex w="100%" bgColor="gray.200" p="12px" >
-                            <Text fontSize="18px">Adicionar Pacote</Text>
+                            <Text  fontSize="24px" fontWeight="bold">Adicionar Pacote</Text>
                         </Flex>
                         <Flex w="100%" m="2rem 0" p="12px 24px" flexDir="column">
                             <chakra.form method="POST" w="100%" display="flex" flexDir="column"onSubmit={handleSubmitCode}>

@@ -9,8 +9,8 @@ import {
     Text,
 } from '@chakra-ui/react'
 
-import { BiHome } from 'react-icons/bi'
-import { FiUsers, FiTruck, FiHelpCircle } from 'react-icons/fi'
+import { BiHome, BiPaperPlane } from 'react-icons/bi'
+import { FiTruck, FiHelpCircle } from 'react-icons/fi'
 import { HiOutlineClipboardList } from 'react-icons/hi'
 import { GoPackage } from 'react-icons/go'
 import { BsCardChecklist } from 'react-icons/bs'
@@ -39,12 +39,13 @@ const Sidebar = () => {
             flexDir="column"
             background="white"
             zIndex="99"
+            transition="0.2s"
         >
             <Flex paddingBottom="2rem" justifyContent="center" alignItems="center">
                 <Img maxW="200px" src="/assets/images/logo.png" alt="Postal Track Logo" />
             </Flex>
 
-            <Flex alignItems="flex-start" w="100%" h="100vh" flexDir="column">
+            <Flex className="container-menu" alignItems="flex-start" w="100%" h="100vh" flexDir="column" overflowY="scroll">
                 <List spacing={4} w="100%" fontSize="22px" color="text.primary">
                     <Link href="/painel/home">
                         <ListItem 
@@ -63,23 +64,6 @@ const Sidebar = () => {
                             <Text ml="1rem">Inicio</Text>
                         </ListItem>
                     </Link>
-                    {/* <Link href="/painel/customers">
-                        <ListItem 
-                            display="Flex"
-                            alignItems="center" 
-                            w="100%" 
-                            cursor="pointer" 
-                            p="12px"
-                            borderRadius="md"
-                            transition="padding .2s ease"
-                            background={router.pathname == '/painel/customers' ? 'yellow.400' : ''}
-                            color={router.pathname == '/painel/customers' ? 'white' : ''}
-                            _hover={{ paddingLeft: '16px', background: 'yellow.400', color: 'white' }}
-                        >
-                            <FiUsers size="22px" color="yellow.500" />
-                            <Text ml="1rem">Clientes</Text>
-                        </ListItem>
-                    </Link> */}
                     <Link href="/painel/list/package">
                         <ListItem 
                             display="Flex"
@@ -131,7 +115,7 @@ const Sidebar = () => {
                             <Text ml="1rem">Registrar Coleta</Text>
                         </ListItem>
                     </Link>
-                    <Link href="/painel/verify/collect">
+                    <Link href="/painel/list/collect">
                         <ListItem 
                             display="Flex"
                             alignItems="center" 
@@ -146,6 +130,24 @@ const Sidebar = () => {
                         >
                             <BsCardChecklist size="22px" color="yellow.500" />
                             <Text ml="1rem">Verificar Coletas</Text>
+                        </ListItem>
+                    </Link>
+
+                    <Link href="https://api.whatsapp.com/send/?phone=5522999039468&text&app_absent=0" target="_bank">
+                        <ListItem 
+                            display="Flex"
+                            alignItems="center" 
+                            w="100%" 
+                            cursor="pointer" 
+                            p="12px"
+                            borderRadius="md"
+                            transition="padding .2s ease"
+                            background={router.pathname == '/painel/verify/collect' ? 'yellow.400' : ''}
+                            color={router.pathname == '/painel/verify/collect' ? 'white' : ''}
+                            _hover={{ paddingLeft: '16px', background: 'yellow.400', color: 'white' }}
+                        >
+                            <BiPaperPlane size="22px" color="yellow.500" />
+                            <Text ml="1rem">Contato</Text>
                         </ListItem>
                     </Link>
                     <ListItem 
