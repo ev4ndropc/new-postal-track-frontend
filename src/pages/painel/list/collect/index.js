@@ -321,7 +321,16 @@ export const getServerSideProps = async (context) => {
   
     cookies = context.req.headers.cookie
 
-    cookies = cookie.parse(cookies)
+    try {
+        cookies = cookie.parse(cookies)
+    } catch (error) {
+        return {
+            redirect: {
+                permanent: false,
+                destination: '/auth/signin'
+              }
+          }
+    }
     
     
     if(!cookies.token){
@@ -334,23 +343,23 @@ export const getServerSideProps = async (context) => {
     }
 
     
-    //const info = await fetch(config.base_api+'/user/info', {
+    // const info = await fetch(config.base_api+'/user/info', {
     //    headers: {
     //        'Authorization': `Bearer ${cookies.token}`
     //    }
-    //})
+    // })
     
-    //const json = await info.json()
+    // const json = await info.json()
 
 
-    //if(json.ok == false) {
+    // if(json.ok == false) {
     //  return {
     //    redirect: {
     //      permanent: false,
     //      destination: '/auth/signin'
     //    }
     //  }
-    //}
+    // }
   
     return {props: { ok: true }}
 }

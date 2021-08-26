@@ -158,52 +158,52 @@ const AddPackage = () => {
     )
 }
 
-// export const getServerSideProps = async (context) => {
-//     let cookies = ''
+export const getServerSideProps = async (context) => {
+    let cookies = ''
   
-//     cookies = context.req.headers.cookie
+    cookies = context.req.headers.cookie
 
-//     try {
-//         cookies = cookie.parse(cookies)
-//     } catch (error) {
-//         return {
-//             redirect: {
-//                 permanent: false,
-//                 destination: '/auth/signin'
-//               }
-//           }
-//     }
+    try {
+        cookies = cookie.parse(cookies)
+    } catch (error) {
+        return {
+            redirect: {
+                permanent: false,
+                destination: '/auth/signin'
+              }
+          }
+    }
     
     
-//     if(!cookies.token){
-//       return {
-//           redirect: {
-//               permanent: false,
-//               destination: '/auth/signin'
-//             }
-//         }
-//     }
+    if(!cookies.token){
+      return {
+          redirect: {
+              permanent: false,
+              destination: '/auth/signin'
+            }
+        }
+    }
 
     
-    //const info = await fetch(config.base_api+'/user/info', {
+    // const info = await fetch(config.base_api+'/user/info', {
     //    headers: {
     //        'Authorization': `Bearer ${cookies.token}`
     //    }
-    //})
+    // })
     
-    //const json = await info.json()
+    // const json = await info.json()
 
 
-    //if(json.ok == false) {
+    // if(json.ok == false) {
     //  return {
     //    redirect: {
     //      permanent: false,
     //      destination: '/auth/signin'
     //    }
     //  }
-    //}
+    // }
   
-//     return {props: { ok: true }}
-// }
+    return {props: { ok: true }}
+}
 
 export default AddPackage
