@@ -19,7 +19,7 @@ const Home = () => {
                 w="100%"
                 h="100%"
             >
-                <Flex className="container-statistics" justifyContent="center" alignItems="flex-start" flexDir="row" p="24px" w="100%" maxH="400px">
+                <Flex className="container-statistics" justifyContent="flex-start" alignItems="flex-start" flexDir="row" p="24px" w="100%">
                     
                     <Flex w="100%" className="statistics-items">
                         <Flex 

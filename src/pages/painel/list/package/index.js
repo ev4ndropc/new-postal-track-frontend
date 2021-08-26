@@ -352,68 +352,70 @@ const ListPackage = () => {
                         borderRadius="md" 
                         pb="4rem" 
                         w="100%"
-                        overflow="scroll"
                     >
-                        <Table 
-                            variant="striped" 
-                            display={data.data == '' ? 'flex' : '' } 
-                            flexDir={data.data == '' ? 'column' : '' }
-                            justifyContent="center"
-                            alignItems="center"
-                        >
-                            <Thead>
-                                <Tr >
-                                    <Th color="black" fontSize="14px">Id</Th>
-                                    <Th color="black" fontSize="14px">Nome</Th>
-                                    <Th color="black" fontSize="14px">Whatsapp</Th>
-                                    <Th color="black" fontSize="14px">Código</Th>
-                                    <Th color="black" fontSize="14px">Última Atualização</Th>
-                                    <Th color="black" fontSize="14px">Data</Th>
-                                    <Th color="black" fontSize="14px">Última Movimentação</Th>
-                                    <Th color="black" fontSize="14px">Status</Th>
-                                    <Th color="black" fontSize="14px">Ações</Th>
-                                </Tr>
-                            </Thead>
-                            {data.data == '' &&
-                                <Tbody h="120px" display="flex" flexDir="column" justifyContent="center" alignItems="center">
-                                    <FaBoxOpen mb="1rem" size="32px" />
-                                    <Text>Nenhum dado para mostrar</Text>
-                                </Tbody>
-                            }
-                            {data.data != '' &&
-                                <Tbody>
-                                    {data.data.map((code, i) => (
-                                        <Tr key={i}>
-                                            <Td fontWeight="bold">{code.id}</Td>
-                                            <Td>{code.client_name}</Td>
-                                            <Td>{code.client_number}</Td>
-                                            <Td cursor="pointer" onClick={() => handleTrackPackage(code.code)}>
-                                                <Tooltip label="Clique para ver histórico de movimentações." hasArrow >
-                                                    {code.code}
-                                                </Tooltip>
-                                            </Td>
-                                            <Td>{code.last_update_hour}</Td>
-                                            <Td>{code.last_update_date}</Td>
-                                            <Td>{code.status}</Td>
-                                            <Td>
-                                                {code.status.includes('entregue') 
-                                                    ?
-                                                    <Led label="Entregue. Esse pacote já foi entregue." type="success" />
-                                                    :
-                                                    <Led label="A caminho. Esse pacote não foi entregue ainda." type="warning" />
-                                                }
-                                            </Td>
-                                            <Td display="flex"flexDir="column">
-                                                <Button onClick={() => handleEditPackage(code.code)} colorScheme="blue" color="white" m="2px 0" leftIcon={<FaEdit/>} >Editar</Button>
-                                                <Button onClick={() => handleDeletePackage(code.id)} colorScheme="red" m="2px 0" leftIcon={<FaTrash/>} >Apagar</Button>
-                                                <Button onClick={() => handleDeletePackage(code.id)} colorScheme="whatsapp" m="2px 0" leftIcon={<FaWhatsapp/>} >Enviar Mensagem</Button>
-                                            </Td>
-                                        </Tr>
-                                    ))
-                                    }
-                                </Tbody>
-                            }
-                        </Table>
+                        <Flex w="100%" overflowX="scroll">
+
+                            <Table 
+                                variant="striped" 
+                                display={data.data == '' ? 'flex' : '' } 
+                                flexDir={data.data == '' ? 'column' : '' }
+                                justifyContent="center"
+                                alignItems="center"
+                            >
+                                <Thead>
+                                    <Tr >
+                                        <Th color="black" fontSize="14px">Id</Th>
+                                        <Th color="black" fontSize="14px">Nome</Th>
+                                        <Th color="black" fontSize="14px">Whatsapp</Th>
+                                        <Th color="black" fontSize="14px">Código</Th>
+                                        <Th color="black" fontSize="14px">Última Atualização</Th>
+                                        <Th color="black" fontSize="14px">Data</Th>
+                                        <Th color="black" fontSize="14px">Última Movimentação</Th>
+                                        <Th color="black" fontSize="14px">Status</Th>
+                                        <Th color="black" fontSize="14px">Ações</Th>
+                                    </Tr>
+                                </Thead>
+                                {data.data == '' &&
+                                    <Tbody h="120px" display="flex" flexDir="column" justifyContent="center" alignItems="center">
+                                        <FaBoxOpen mb="1rem" size="32px" />
+                                        <Text>Nenhum dado para mostrar</Text>
+                                    </Tbody>
+                                }
+                                {data.data != '' &&
+                                    <Tbody>
+                                        {data.data.map((code, i) => (
+                                            <Tr key={i}>
+                                                <Td fontWeight="bold">{code.id}</Td>
+                                                <Td>{code.client_name}</Td>
+                                                <Td>{code.client_number}</Td>
+                                                <Td cursor="pointer" onClick={() => handleTrackPackage(code.code)}>
+                                                    <Tooltip label="Clique para ver histórico de movimentações." hasArrow >
+                                                        {code.code}
+                                                    </Tooltip>
+                                                </Td>
+                                                <Td>{code.last_update_hour}</Td>
+                                                <Td>{code.last_update_date}</Td>
+                                                <Td>{code.status}</Td>
+                                                <Td>
+                                                    {code.status.includes('entregue') 
+                                                        ?
+                                                        <Led label="Entregue. Esse pacote já foi entregue." type="success" />
+                                                        :
+                                                        <Led label="A caminho. Esse pacote não foi entregue ainda." type="warning" />
+                                                    }
+                                                </Td>
+                                                <Td display="flex"flexDir="column">
+                                                    <Button onClick={() => handleEditPackage(code.code)} colorScheme="blue" color="white" m="2px 0" leftIcon={<FaEdit/>} >Editar</Button>
+                                                    <Button onClick={() => handleDeletePackage(code.id)} colorScheme="red" m="2px 0" leftIcon={<FaTrash/>} >Apagar</Button>
+                                                    <Button onClick={() => handleDeletePackage(code.id)} colorScheme="whatsapp" m="2px 0" leftIcon={<FaWhatsapp/>} >Enviar Mensagem</Button>
+                                                </Td>
+                                            </Tr>
+                                        ))
+                                        }
+                                    </Tbody>
+                                }
+                            </Table>
+                        </Flex>
                         <Flex w="100%" p="12px">
                             {data != '' &&
                                 <Flex w="100%" justifyContent="center" alignItems="center">
