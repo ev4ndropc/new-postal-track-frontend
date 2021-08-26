@@ -168,7 +168,7 @@ button:focus {
     }
 
     .topbar.close {
-        padding-left: 344px;
+        padding-left: 24px;
     }
 
     .sidebar.close{
@@ -176,7 +176,7 @@ button:focus {
     }
 
     .content.close {
-        padding-left: 320px;
+        padding-left: 0px;
     }
 }
 
