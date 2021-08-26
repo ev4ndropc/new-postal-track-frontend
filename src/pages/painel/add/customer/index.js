@@ -31,22 +31,22 @@ const Customer = () => {
     )
 }
 
-export const getServerSideProps = async (context) => {
-    let cookies = ''
+// export const getServerSideProps = async (context) => {
+//     let cookies = ''
   
-    cookies = context.req.headers.cookie
+//     cookies = context.req.headers.cookie
 
-    cookies = cookie.parse(cookies)
+//     cookies = cookie.parse(cookies)
     
     
-    if(!cookies.token){
-      return {
-          redirect: {
-              permanent: false,
-              destination: '/auth/signin'
-            }
-        }
-    }
+//     if(!cookies.token){
+//       return {
+//           redirect: {
+//               permanent: false,
+//               destination: '/auth/signin'
+//             }
+//         }
+//     }
 
     
     //const info = await fetch(config.base_api+'/user/info', {
@@ -67,7 +67,7 @@ export const getServerSideProps = async (context) => {
     //  }
     //}
   
-    return {props: { ok: true }}
-}
+//     return {props: { ok: true }}
+// }
 
 export default Customer

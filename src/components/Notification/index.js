@@ -24,7 +24,7 @@ const Notification = () => {
   
     return (
       <>
-        <Button mr="1rem" ref={btnRef} onClick={onOpen}>
+        <Button ref={btnRef} onClick={onOpen}>
             <BsBell size="26px" />
             <chakra.span 
                 bgColor="red" 

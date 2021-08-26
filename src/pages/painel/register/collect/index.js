@@ -189,17 +189,12 @@ const RegisterCollect = () => {
     }, [])
 
     return (
-        <Content>
-            <Header pageTitle="Registrar Coleta"/>
-            <Sidebar/>
-            <Topbar/>
+        <Content pageTitle="Registrar Coleta">
             <Flex 
                 bgGradient="linear(to-b, #f1f1f1, #fff)"
-                position="absolute"
+                position="relative"
                 w="100%"
                 h="100%"
-                paddingLeft="320px"
-                top="90px"
                 justifyContent="center"
             >
                 <Flex 
@@ -219,7 +214,7 @@ const RegisterCollect = () => {
                             <Barcode submit={handleSubmit} data={data} setData={setData} />
                         }
                         <Flex w="100%" m="2rem 0" p="12px 24px" flexDir="column">
-                            <chakra.form w="100%" display="flex" onSubmit={handleSubmit} flexDir="column">
+                            <chakra.form className="form-register-collect" w="100%" display="flex" onSubmit={handleSubmit} flexDir="column">
                                 <Flex w="100%" flexDir="row">
                                     <FormControl mr="0.5rem" id="code">
                                         <FormLabel>Identificador</FormLabel>
@@ -239,7 +234,7 @@ const RegisterCollect = () => {
 
                                                 ))}
                                             </Select>
-                                            <Button p="1rem" ml="0.5rem" onClick={handleAddSalesChannel}>
+                                            <Button className="add-sale-channel" p="1rem" ml="0.5rem" onClick={handleAddSalesChannel}>
                                                 <AiOutlinePlusCircle size="32px" />
                                             </Button>
                                         </InputGroup>

@@ -95,17 +95,12 @@ const AddPackage = () => {
     }
 
     return (
-        <Content>
-            <Header pageTitle="Adicionar Pacote"/>
-            <Sidebar/>
-            <Topbar/>
+        <Content pageTitle="Adicionar Pacote">
             <Flex 
                 bgGradient="linear(to-b, #f1f1f1, #fff)"
-                position="absolute"
+                position="relative"
                 w="100%"
                 h="100%"
-                paddingLeft="320px"
-                top="90px"
                 justifyContent="center"
             >
                 <Flex 
@@ -122,7 +117,7 @@ const AddPackage = () => {
                             <Text  fontSize="24px" fontWeight="bold">Adicionar Pacote</Text>
                         </Flex>
                         <Flex w="100%" m="2rem 0" p="12px 24px" flexDir="column">
-                            <chakra.form method="POST" w="100%" display="flex" flexDir="column"onSubmit={handleSubmitCode}>
+                            <chakra.form className="form-add-package" method="POST" w="100%" display="flex" flexDir="column"onSubmit={handleSubmitCode}>
                                 <Flex w="100%" flexDir="row">
                                     <FormControl mr="0.5rem" id="code">
                                         <FormLabel>Nome</FormLabel>
@@ -163,31 +158,31 @@ const AddPackage = () => {
     )
 }
 
-export const getServerSideProps = async (context) => {
-    let cookies = ''
+// export const getServerSideProps = async (context) => {
+//     let cookies = ''
   
-    cookies = context.req.headers.cookie
+//     cookies = context.req.headers.cookie
 
-    try {
-        cookies = cookie.parse(cookies)
-    } catch (error) {
-        return {
-            redirect: {
-                permanent: false,
-                destination: '/auth/signin'
-              }
-          }
-    }
+//     try {
+//         cookies = cookie.parse(cookies)
+//     } catch (error) {
+//         return {
+//             redirect: {
+//                 permanent: false,
+//                 destination: '/auth/signin'
+//               }
+//           }
+//     }
     
     
-    if(!cookies.token){
-      return {
-          redirect: {
-              permanent: false,
-              destination: '/auth/signin'
-            }
-        }
-    }
+//     if(!cookies.token){
+//       return {
+//           redirect: {
+//               permanent: false,
+//               destination: '/auth/signin'
+//             }
+//         }
+//     }
 
     
     //const info = await fetch(config.base_api+'/user/info', {
@@ -208,7 +203,7 @@ export const getServerSideProps = async (context) => {
     //  }
     //}
   
-    return {props: { ok: true }}
-}
+//     return {props: { ok: true }}
+// }
 
 export default AddPackage

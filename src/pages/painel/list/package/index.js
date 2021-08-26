@@ -300,19 +300,13 @@ const ListPackage = () => {
     }, [page])
 
     return (
-        <Content>
-            <Header pageTitle="Lista de Pacotes"/>
-            <Sidebar/>
-            <Topbar/>
+        <Content pageTitle="Lista de Pacotes">
             <Flex 
                 bgGradient="linear(to-b, #f1f1f1, #fff)"
-                position="absolute"
+                position="relative"
                 w="100%"
                 h="100%"
-                paddingLeft="320px"
-                pt="152px"
                 justifyContent="center"
-                overflowY="scroll"
             >
                 <Flex 
                     justifyContent="flex-start"  
@@ -322,7 +316,7 @@ const ListPackage = () => {
                     w="100%" 
                     maxW="1500px"
                 >
-                    <Flex justifyContent="center" alignItems="center" mb="1rem">
+                    <Flex className="list-package-action-buttons" justifyContent="center" alignItems="center" mb="1rem">
                         <Link href="/painel/add/package">
                             <Button mr="0.5rem" colorScheme="green">Adicionar Novo</Button>
                         </Link>
@@ -330,28 +324,36 @@ const ListPackage = () => {
                         <Button colorScheme="red" onClick={handleDeleteAllPackages}>Apagar todos</Button>
 
                     </Flex>
-                    <Flex background="#fff" flexDir="column" boxShadow="md" borderRadius="md" pb="4rem" w="100%">
-                        <Flex w="100%" bg="gray.200" p=".75rem 1.25rem" justifyContent="space-between">
-                            <Text fontSize="24px" fontWeight="bold">Pacotes</Text>
+                    <Flex className="table-header" w="100%" bg="gray.200" p=".75rem 1.25rem" justifyContent="space-between">
+                        <Text fontSize="24px" fontWeight="bold">Pacotes</Text>
+                        <Flex>
+                            <form onSubmit={handleSearchPackage}>
+                                <Input value={searchPackage} onChange={e=>setSearchPackage(e.target.value)} bg="white" placeholder="Procurar..." />
+                            </form>
+                            <Flex justifyContent="center" alignItems="center" m="0rem 0.4rem">
+                                Por
+                            </Flex>
                             <Flex>
-                                <form onSubmit={handleSearchPackage}>
-                                    <Input value={searchPackage} onChange={e=>setSearchPackage(e.target.value)} bg="white" placeholder="Procurar..." />
-                                </form>
-                                <Flex justifyContent="center" alignItems="center" m="0rem 0.4rem">
-                                    Por
-                                </Flex>
-                                <Flex>
-                                    <Select bg="white" placeholder="Selecione..." value={searchType} onChange={e=> setSearchType(e.target.value)}>
-                                        <option value="client_name">Nome</option>
-                                        <option value="client_number">Whatsapp</option>
-                                        <option value="code">Código</option>
-                                        <option value="last_update_hour">Última Atualização</option>
-                                        <option value="last_update_date">Data</option>
-                                        <option value="status">Última Movimentação</option>
-                                    </Select>
-                                </Flex>
+                                <Select bg="white" placeholder="Selecione..." value={searchType} onChange={e=> setSearchType(e.target.value)}>
+                                    <option value="client_name">Nome</option>
+                                    <option value="client_number">Whatsapp</option>
+                                    <option value="code">Código</option>
+                                    <option value="last_update_hour">Última Atualização</option>
+                                    <option value="last_update_date">Data</option>
+                                    <option value="status">Última Movimentação</option>
+                                </Select>
                             </Flex>
                         </Flex>
+                    </Flex>
+                    <Flex 
+                        background="#fff" 
+                        flexDir="column" 
+                        boxShadow="md" 
+                        borderRadius="md" 
+                        pb="4rem" 
+                        w="100%"
+                        overflow="scroll"
+                    >
                         <Table 
                             variant="striped" 
                             display={data.data == '' ? 'flex' : '' } 

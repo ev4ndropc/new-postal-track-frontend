@@ -29,22 +29,25 @@ const Topbar = (props) => {
             p="0 24px" 
             alignItems="center" 
             justifyContent="space-between"
-            zIndex="99"
+            zIndex="9"
             transition="0.2s"
+            top="0px"
+            pl="344px"
+            className={`topbar ${props.close ? 'close' : 'open'}`}
         >
             <Flex>
-                <Button >
+                <Button className="close-topbar" onClick={() => props.setClose(!props.close)}>
                     <HiOutlineMenuAlt1 size="20px" />
                 </Button>
             </Flex>
             <Flex justifyContent="center" alignItems="center" color="text.primary" >
-                <Button mr="1rem">
+                <Button>
                     <BiMoon size="26px" />
                 </Button>
 
                 <Notification/>
 
-                <Flex mr="1rem" flexDir="column" justifyContent="center" alignItems="center">
+                <Flex flexDir="column" justifyContent="center" alignItems="center">
                     <Button color="text.primary" _hover={{ color: "white", background: "green.300" }}>
                         <FaCoins size="20px" />
                         <Text ml="0.5rem">R$ 497.15</Text>
@@ -52,7 +55,7 @@ const Topbar = (props) => {
                 </Flex>
 
                 <Menu >
-                    <MenuButton cursor="pointer"  as={Avatar} src="https://postaltrack.com.br/img/avatars/avatar1592514063706.png" />
+                    <MenuButton cursor="pointer" size="md"  as={Avatar} src="https://postaltrack.com.br/img/avatars/avatar1592514063706.png" />
                     <MenuList>
                         <MenuItem>
                             <CgProfile size="20px" />

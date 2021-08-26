@@ -198,19 +198,13 @@ const VerifyCollect = () => {
     }, [identifier])
 
     return (
-        <Content>
-            <Header pageTitle="Verificar Coletas"/>
-            <Sidebar/>
-            <Topbar/>
+        <Content pageTitle="Verificar Coletas">
             <Flex 
                 bgGradient="linear(to-b, #f1f1f1, #fff)"
-                position="absolute"
+                position="relative"
                 w="100%"
                 h="100%"
-                paddingLeft="320px"
-                pt="152px"
                 justifyContent="center"
-                overflowY="scroll"
             >
                 <Flex 
                     justifyContent="center"  
@@ -222,8 +216,10 @@ const VerifyCollect = () => {
                     maxW="1500px"
                 >
                     <Flex w="100%" background="#fff" flexDir="column" boxShadow="md" borderRadius="md">
-                        <Flex w="100%" bgColor="gray.200" p="12px" justifyContent="space-between" >
-                            <Text  fontSize="24px" fontWeight="bold">Pacotes Bipados</Text>
+                        <Flex className="list-collect-header" w="100%" bgColor="gray.200" p="12px" justifyContent="space-between" >
+                            <Flex>
+                                <Text  fontSize="24px" fontWeight="bold">Pacotes Bipados</Text>
+                            </Flex>
 
                             <Flex flexDir="column" justifyContent="center" alignItems="center">
                                 <Text>Total coletado:</Text>
@@ -235,7 +231,7 @@ const VerifyCollect = () => {
                                 <Badge ml="0.5rem" textAlign="center" maxW="80px" minW="80px" variant="solid" colorScheme="yellow">{totalNotCollected}</Badge>
                             </Flex>
 
-                            <Flex>
+                            <Flex className="list-collect-inputs">
                                 <FormControl m="0 0.5rem" maxW="250px" id="date" display="flex" justifyContent="center" flexDir="row">
                                     <Button mr="0.5rem" colorScheme="green" >
                                         <FaFileDownload/>
@@ -248,51 +244,54 @@ const VerifyCollect = () => {
                                 </FormControl>
                             </Flex>
                         </Flex>
-                        <Flex w="100%" m="0.5rem 0" p="12px">
+                        <Flex className="list-collect-mark" w="100%" m="0.5rem 0" p="12px">
                             <Button m="0.5rem 0.25rem 0 0" onClick={handleMarkAsCollected} colorScheme="green">Marcar como coletado</Button>
                             <Button m="0.5rem 0 0 0.25rem" onClick={handleMarkAsNotCollected} colorScheme="yellow">Marcar como nao coletado</Button>
                         </Flex>
-                        <Table variant="simple">
-                            <Thead>
-                                <Tr>
-                                    <Th>Selecionar</Th>
-                                    <Th>Identificador</Th>
-                                    <Th>Canal de Vendas</Th>
-                                    <Th>Coletado</Th>
-                                    <Th>Data</Th>
-                                    <Th>Ações</Th>
-                                </Tr>
-                            </Thead>
-                            <Tbody>
-                                {list.data.map((collect, i) => (
-                                    <Tr key={i} fontSize="18px" >
-                                        <Td>
-                                            <Checkbox onChange={() => handleAddSelectedCollect(collect.identifier)} colorScheme="yellow" />
-                                        </Td>
-                                        <Td>
-                                            {collect.identifier}
-                                        </Td>
-                                        <Td>
-                                            {collect.sale_channel}
-                                        </Td>
-                                        <Td>
-                                            {collect.collected == 'false' &&
-                                                <Badge variant="solid" colorScheme="red">Não Coletado</Badge>
-                                            }
-                                            {collect.collected == 'true' &&
-                                                <Badge variant="solid" colorScheme="green">Coletado</Badge>
-                                            }
-                                        </Td>
-                                        <Td>
-                                            {moment(Number(collect.updated_at)).format('LLL')}
-                                        </Td>
-                                        <Td display="flex"flexDir="column">
-                                            <Button onClick={() => handleDeleteCollect(collect.identifier)} colorScheme="red" m="2px 0" >Apagar</Button>
-                                        </Td>
+                        <Flex w="100%" overflowX="scroll">
+
+                            <Table variant="simple">
+                                <Thead>
+                                    <Tr>
+                                        <Th>Selecionar</Th>
+                                        <Th>Identificador</Th>
+                                        <Th>Canal de Vendas</Th>
+                                        <Th>Coletado</Th>
+                                        <Th>Data</Th>
+                                        <Th>Ações</Th>
                                     </Tr>
-                                ))}
-                            </Tbody>
-                        </Table>
+                                </Thead>
+                                <Tbody>
+                                    {list.data.map((collect, i) => (
+                                        <Tr key={i} fontSize="18px" >
+                                            <Td>
+                                                <Checkbox onChange={() => handleAddSelectedCollect(collect.identifier)} colorScheme="yellow" />
+                                            </Td>
+                                            <Td>
+                                                {collect.identifier}
+                                            </Td>
+                                            <Td>
+                                                {collect.sale_channel}
+                                            </Td>
+                                            <Td>
+                                                {collect.collected == 'false' &&
+                                                    <Badge variant="solid" colorScheme="red">Não Coletado</Badge>
+                                                }
+                                                {collect.collected == 'true' &&
+                                                    <Badge variant="solid" colorScheme="green">Coletado</Badge>
+                                                }
+                                            </Td>
+                                            <Td>
+                                                {moment(Number(collect.updated_at)).format('LLL')}
+                                            </Td>
+                                            <Td display="flex"flexDir="column">
+                                                <Button onClick={() => handleDeleteCollect(collect.identifier)} colorScheme="red" m="2px 0" >Apagar</Button>
+                                            </Td>
+                                        </Tr>
+                                    ))}
+                                </Tbody>
+                            </Table>
+                        </Flex>
                         <Flex w="100%" p="12px">
                             <Flex w="100%" justifyContent="center" alignItems="center">
                                 <Button onClick={() => { if(page > 1) return setPage(page-1) }}>

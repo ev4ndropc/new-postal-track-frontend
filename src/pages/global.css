@@ -18,6 +18,8 @@ html {
 
 #__next {
     height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden
 }
 
 button {
@@ -46,6 +48,178 @@ button:focus {
     background: #edf2f7;
 }
 
+
 .container-menu::-webkit-scrollbar {
     display: none;
-  }
+}
+
+.sidebar.close{
+    transform: translate(-320px, 0px)
+}
+
+.topbar.close {
+    padding-left: 24px;
+
+}
+
+.content.close {
+    padding-left: 0px;
+
+}
+
+.content.open {
+    padding-left: 320px;
+}
+
+
+.sidebar-close-button {
+    display: none;
+}
+
+.topbar button {
+    margin-right: 0.5rem;
+}
+
+.chakra-modal__content-container {
+    padding: 12px;
+}
+
+@media (max-width: 1280px) {
+    .container-statistics {
+        flex-direction: column!important;
+    }
+
+    .list-collect-header {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .list-collect-header div {
+        margin: 4px 0px;
+    }
+}
+
+@media (max-width: 992px) {
+    .list-collect-inputs {
+        flex-direction: column;
+    }
+
+    .form-add-package>div,
+    .form-register-collect>div {
+        flex-direction: column;
+    }
+
+    .form-add-package div[role="group"],
+    .form-register-collect div[role="group"] {
+        margin-left: 0px;
+    }
+
+    .form-add-package div button,
+    .form-register-collect div button {
+        width: 100%;
+        margin: 4px 0px;
+    }
+
+    .form-register-collect div button {
+        font-size: 14px;
+    }
+
+    .add-sale-channel {
+        padding: 2px!important;
+        margin: 0px 4px!important;
+        width: 50px!important;
+    }
+    
+}
+
+@media (max-width:778px) {
+    .topbar button svg {
+        width: 16px
+    }
+
+    .topbar.open {
+        padding-left: 24px;
+    }
+
+    .sidebar.open{
+        transform: translate(-320px, 0px)
+    }
+
+    .content.open {
+        padding-left: 0;
+    }
+
+    .content.open.overlay::after {
+        content: '';
+        width: 0;
+        height: 0;
+    }
+
+    .content.close::after {
+        content: '';
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        left: 320px;
+        top: 0px;
+        background: #000;
+        opacity: 0.6;
+        z-index: 999;
+    }
+
+    .topbar.close {
+        padding-left: 344px;
+    }
+
+    .sidebar.close{
+        transform: translate(0px, 0px)
+    }
+
+    .content.close {
+        padding-left: 320px;
+    }
+}
+
+@media (max-width: 550px) {
+    .statistics-items {
+        flex-direction: column;
+    }
+
+    .statistics-items div {
+        width: 100%;
+    }
+
+    .list-package-action-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .list-package-action-buttons  button{
+        width: 100%;
+        margin: 4px 0px;
+    }
+
+    .table-header {
+        flex-direction: column;
+    }
+
+    .list-collect-mark {
+        flex-direction: column;
+    }
+
+    .list-collect-mark button {
+        margin: 4px 0px;
+    }
+}
+
+@media (max-width: 321px) {
+    .topbar button {
+        padding: 4px;
+        margin: 0px 4px;
+        font-size: 12px;
+    }
+
+    .sidebar-close-button {
+        display: flex!important;
+    }
+}
