@@ -543,6 +543,8 @@ const ListPackage = () => {
                                                     ? 'blue.600'
                                                     : event.descricao.includes('não realizada')
                                                     ? 'red.400'
+                                                    : event.descricao.includes('não entregue')
+                                                    ? 'red.400'
                                                     : 'black'
                                                     } 
                                                     textAlign="center"
