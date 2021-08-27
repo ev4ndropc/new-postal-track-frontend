@@ -20,10 +20,8 @@ import moment from 'moment'
 
 import cookie from 'cookie'
 
-import Header from '../../../../components/Header'
 import Content from '../../../../components/Content'
-import Topbar from '../../../../components/Topbar'
-import Sidebar from '../../../../components/Sidebar'
+
 
 import useApi from '../../../../helpers/Api'
 

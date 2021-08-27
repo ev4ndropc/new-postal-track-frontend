@@ -39,13 +39,11 @@ import {
 
 import cookie from 'cookie'
 
-import Header from '../../../../components/Header'
+
 import Content from '../../../../components/Content'
-import Topbar from '../../../../components/Topbar'
-import Sidebar from '../../../../components/Sidebar'
 import Led from '../../../../components/Led'
 
-import { FaArrowLeft, FaArrowRight, FaEdit, FaTrash, FaBoxOpen, FaWhatsapp } from 'react-icons/fa'
+import { FaArrowLeft, FaArrowRight, FaEdit, FaTrash, FaBoxOpen, FaWhatsapp, FaFileDownload } from 'react-icons/fa'
 import { IoMdArrowRoundForward } from 'react-icons/io'
 
 import useApi from '../../../../helpers/Api'
@@ -327,6 +325,11 @@ const ListPackage = () => {
                     <Flex className="table-header" w="100%" bg="gray.200" p=".75rem 1.25rem" justifyContent="space-between">
                         <Text fontSize="24px" fontWeight="bold">Pacotes</Text>
                         <Flex>
+                            <FormControl m="0 0.5rem" maxW="50px" display="flex" justifyContent="center" flexDir="row">
+                                <Button mr="0.5rem" colorScheme="green" >
+                                    <FaFileDownload/>
+                                </Button>
+                            </FormControl>
                             <form onSubmit={handleSearchPackage}>
                                 <Input value={searchPackage} onChange={e=>setSearchPackage(e.target.value)} bg="white" placeholder="Procurar..." />
                             </form>
@@ -515,7 +518,7 @@ const ListPackage = () => {
                                         {i == 0 &&
                                             <Flex m="1rem 0rem" w="100%" bg="white" borderRadius="md" boxShadow="md">
                                                 <Flex borderLeftWidth="7px" borderColor="blue.400" bg="gray.100" p="24px" flexDir="column" justifyContent="center" alignItems="center" textAlign="center">
-                                                    <Img maxW="48px" mb="0.5rem" src="/assets/images/track-delivered.webp" />
+                                                    <Img maxW="48px" mb="0.5rem" src="/assets/images/track-delivered.png" />
                                                     <Text>{event.data}</Text>
                                                     <Text>{event.hora}</Text>
                                                 </Flex>
@@ -546,18 +549,22 @@ const ListPackage = () => {
                                                 >
                                                     {event.descricao == 'Objeto saiu para entrega ao destinatário' 
                                                         ?
-                                                            <Img maxW="48px" mb="0.5rem" src="/assets/images/track-delivering.webp" />
+                                                            <Img maxW="48px" mb="0.5rem" src="/assets/images/track-delivering.png" />
                                                         :
 
                                                         event.descricao.includes('encaminhado para retirada')
                                                         ?
-                                                            <Img maxW="48px" mb="0.5rem" src="/assets/images/track-forwarded.webp" />
+                                                            <Img maxW="48px" mb="0.5rem" src="/assets/images/track-forwarded.png" />
+                                                        :
+                                                        event.descricao.includes('não entregue')
+                                                        ?
+                                                            <Img maxW="48px" mb="0.5rem" src="/assets/images/not_delivered.png" />
                                                         :
                                                         event.descricao.includes('não realizada')
                                                         ?
-                                                            <Img maxW="48px" mb="0.5rem" src="/assets/images/track-not-delivered.webp" />
+                                                            <Img maxW="48px" mb="0.5rem" src="/assets/images/track-not-delivered.png" />
                                                         :
-                                                            <Img maxW="48px" mb="0.5rem" src="/assets/images/track-posted.webp" />
+                                                            <Img maxW="48px" mb="0.5rem" src="/assets/images/track-posted.png" />
                                                     }
 
                                                     <Text>{event.data}</Text>

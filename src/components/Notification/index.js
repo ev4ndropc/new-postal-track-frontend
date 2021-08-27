@@ -40,7 +40,7 @@ const Notification = () => {
                 fontSize="10px"
                 color="white"
                 fontWeight="700"
-            >99+</chakra.span>
+            >4</chakra.span>
         </Button>
         <Drawer
           isOpen={isOpen}
