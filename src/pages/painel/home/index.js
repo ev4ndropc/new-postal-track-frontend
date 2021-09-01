@@ -4,13 +4,41 @@ import {
     Text,
 } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
+import { io } from 'socket.io-client'
+
+
+import CountUp from 'react-countup'
 
 import cookie from 'cookie'
-
 import Content from '../../../components/Content'
+import useApi from '../../../helpers/Api'
 
 
 const Home = () => {
+    const socket = io('http://localhost:3333', { transports: ['websockets'] })
+
+
+    const api = useApi()
+
+    const [data, setData] = useState({ info: {
+        track_package: 0,
+        limit_package: 0,
+        on_my_way_package: 0,
+        delivered_package: 0
+    } })
+
+    useEffect(() => {
+
+        const getData = async () => {
+            const res = await api.getPackageInfo()
+            setData(res)
+        }
+
+        socket.emit('message', 'teste')
+
+        getData()
+    },[])
+    
     return (
         <Content pageTitle="Dashboard">
             <Flex 
@@ -32,8 +60,13 @@ const Home = () => {
                             margin="6px"
                             flexDir="column"
                         >
+                            <br/>
                             <Flex w="100%" fontSize="38px" color="yellow.400">
-                                6
+                                <CountUp
+                                  start={0}
+                                  end={data.info.track_package}
+                                  duration={0.3}
+                                />
                             </Flex>
                             <Flex alignItems="flex-end" justifyContent="space-between">
                                 <Text>Pacotes sendo rastreados</Text>
@@ -51,10 +84,14 @@ const Home = () => {
                             flexDir="column"
                         >
                             <Flex w="100%" fontSize="38px" color="yellow.400">
-                                50
+                                <CountUp
+                                  start={0}
+                                  end={data.info.limit_package-data.info.track_package}
+                                  duration={0.3}
+                                />
                             </Flex>
                             <Flex alignItems="flex-end" justifyContent="space-between">
-                                <Text>Você pode rastrear até <strong>50</strong> pacotes.</Text>
+                                <Text>Você pode rastrear mais <strong>{<CountUp start={0} end={data.info.limit_package-data.info.track_package} duration={0.3} />}</strong> pacotes.</Text>
                                 <Img w="100px" src="/assets/images/package-available.png" />
                             </Flex>
                         </Flex>
@@ -72,10 +109,14 @@ const Home = () => {
                             flexDir="column"
                         >
                             <Flex w="100%" fontSize="38px" color="yellow.400">
-                                22
+                                <CountUp
+                                  start={0}
+                                  end={data.info.on_my_way_package}
+                                  duration={0.3}
+                                />
                             </Flex>
                             <Flex alignItems="flex-end" justifyContent="space-between">
-                                <Text><strong>4</strong> pacotes a caminho</Text>
+                                <Text><strong>{<CountUp start={0} end={data.info.on_my_way_package} duration={0.3} />}</strong> pacotes a caminho</Text>
                                 <Img w="100px" src="/assets/images/inprogress.png" />
                             </Flex>
                         </Flex>
@@ -90,10 +131,14 @@ const Home = () => {
                             flexDir="column"
                         >
                             <Flex w="100%" fontSize="38px" color="yellow.400">
-                                17
+                                <CountUp
+                                  start={0}
+                                  end={data.info.delivered_package}
+                                  duration={0.3}
+                                />
                             </Flex>
                             <Flex alignItems="flex-end" justifyContent="space-between">
-                                <Text><strong>2</strong> pacotes entregues</Text>
+                                <Text><strong>{<CountUp start={0} end={data.info.delivered_package} duration={0.3} />}</strong> pacotes entregues</Text>
                                 <Img w="100px" src="/assets/images/finish.png" />
                             </Flex>
                         </Flex>
@@ -105,31 +150,31 @@ const Home = () => {
     )
 }
 
-//export const getServerSideProps = async (context) => {
-//     let cookies = ''
+export const getServerSideProps = async (context) => {
+    let cookies = ''
   
-//     cookies = context.req.headers.cookie
+    cookies = context.req.headers.cookie
 
-//     try {
-//         cookies = cookie.parse(cookies)
-//     } catch (error) {
-//         return {
-//             redirect: {
-//                 permanent: false,
-//                 destination: '/auth/signin'
-//               }
-//           }
-//     }
+    try {
+        cookies = cookie.parse(cookies)
+    } catch (error) {
+        return {
+            redirect: {
+                permanent: false,
+                destination: '/auth/signin'
+              }
+          }
+    }
     
     
-//     if(!cookies.token){
-//       return {
-//           redirect: {
-//               permanent: false,
-//               destination: '/auth/signin'
-//             }
-//         }
-//     }
+    if(!cookies.token){
+      return {
+          redirect: {
+              permanent: false,
+              destination: '/auth/signin'
+            }
+        }
+    }
 
     
     // const info = await fetch(config.base_api+'/user/info', {
@@ -150,7 +195,7 @@ const Home = () => {
     //  }
     // }
   
-    //return {props: { ok: true }}
-//}
+    return {props: { ok: true }}
+}
 
 export default Home

@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { 
     Avatar, 
     Flex,
@@ -11,6 +12,10 @@ import {
     chakra,
     Badge
 } from '@chakra-ui/react'  
+import { useSelector } from 'react-redux'
+
+import CountUp from 'react-countup'
+
 
 import { HiOutlineMenuAlt1 } from 'react-icons/hi'
 import { BiMoon, BiHelpCircle } from 'react-icons/bi'
@@ -21,6 +26,8 @@ import { FaCoins } from 'react-icons/fa'
 import Notification from '../Notification'
 
 const Topbar = (props) => {
+    const avatar = useSelector(state => state.user.avatar)
+    const balance = useSelector(state => state.user.balance)
     return (
         <Flex 
             bgColor="#fff" 
@@ -50,16 +57,28 @@ const Topbar = (props) => {
                 <Flex flexDir="column" justifyContent="center" alignItems="center">
                     <Button color="text.primary" _hover={{ color: "white", background: "green.300" }}>
                         <FaCoins size="20px" />
-                        <Text ml="0.5rem">R$ 497.15</Text>
+                        <Text ml="0.5rem">
+                            <CountUp
+                                start={0.00}
+                                end={balance}
+                                duration={0.3}
+                                decimals={2}
+                                prefix="R$ "
+                            />
+                        </Text>
                     </Button>
                 </Flex>
 
                 <Menu >
-                    <MenuButton cursor="pointer" size="md"  as={Avatar} src="https://postaltrack.com.br/img/avatars/avatar1592514063706.png" />
+                    <MenuButton cursor="pointer" size="md"  as={Avatar} src={`/assets/images/avatar/${avatar}`} />
                     <MenuList>
                         <MenuItem>
-                            <CgProfile size="20px" />
-                            <Text ml="0.6rem">Perfil</Text>
+                            <Link href="/painel/profile">
+                                <>
+                                    <CgProfile size="20px" />
+                                    <Text ml="0.6rem">Perfil</Text>
+                                </>
+                            </Link>
                         </MenuItem>
                         <MenuItem>
                             <BiHelpCircle size="20px" />

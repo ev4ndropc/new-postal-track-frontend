@@ -15,6 +15,7 @@ import {
   useBreakpointValue,
   useToast,
 } from "@chakra-ui/react";
+import { useDispatch } from 'react-redux';
 
 import { FaEnvelope, FaKey, FaSignInAlt } from 'react-icons/fa'
 
@@ -27,6 +28,7 @@ import { doLogin } from '../../../helpers/AuthHandler'
 export default function Signin () {
 
   const api = useApi()
+  const dispatch = useDispatch()
   const toast = useToast()
 
   const size = useBreakpointValue({ base: "md", sm: "md", md: 'lg', lg: 'lg' })
@@ -76,7 +78,15 @@ export default function Signin () {
         duration: 3000,
         isClosable: true,
       })
+
       doLogin(json.token, rememberPassword)
+      const data = await api.getUserInfo()
+      
+      dispatch({
+        type: 'SET_DATA',
+        payload: data.data
+    })
+
 
       setTimeout(() => {
         window.location.href = '/painel/home'

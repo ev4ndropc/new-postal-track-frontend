@@ -148,6 +148,15 @@ const  ApiFunctions = {
     return json
   },
 
+  getUserInfo:async (token) => {
+    const json = await apiFetchGet(
+      `/get/user_info`,
+      {},
+      true
+    )
+    return json
+  },
+
   addPackage:async(clientName, clientNumber, code) => {
     const json = await apiFetchPost(
       '/add/package',
@@ -199,6 +208,16 @@ const  ApiFunctions = {
   getPackage:async(code) => {
     const json = await apiFetchGet(
       `/get/package?code=${code}`,
+      {},
+      true
+    )
+
+    return json
+  },
+
+  getPackageInfo:async() => {
+    const json = await apiFetchGet(
+      `/package/info`,
       {},
       true
     )
