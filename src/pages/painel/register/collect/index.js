@@ -29,6 +29,7 @@ import { RiStore2Line } from 'react-icons/ri'
 import { BiPackage } from 'react-icons/bi'
 import { ImBarcode, ImQrcode } from 'react-icons/im'
 import { AiOutlinePlusCircle } from 'react-icons/ai'
+import Cookies from 'js-cookie'
 
 import Header from '../../../../components/Header'
 import Content from '../../../../components/Content'
@@ -43,18 +44,19 @@ const Barcode = dynamic(
 )
 
 const RegisterCollect = () => {
+    const token = Cookies.get('token')
     const api = useApi()
     const toast = useToast()
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const [readerType, setReaderType] = useState(null)
-    
+
     const [data, setData] = useState('')
     const [salesChannel, setSalesChannel] = useState([])
     const [salesChannelName, setSalesChannelName] = useState('')
 
     const [salesChannelselected, setSalesChannelSelected] = useState('')
-    
+
 
     const handleActiveReader = (reader) => {
         setReaderType(reader)
@@ -122,7 +124,7 @@ const RegisterCollect = () => {
                             status: "success",
                             duration: 5000,
                             isClosable: true,
-                        })  
+                        })
                     }
                 }
             }else{
@@ -142,7 +144,7 @@ const RegisterCollect = () => {
         const res = await api.addSalesChannel(salesChannelName)
         if(res.ok) {
 
-            var info = await api.getSalesChannel()
+            var info = await api.getSalesChannel(token)
             setSalesChannel(info.sales_channel)
 
             setSalesChannelName('')
@@ -162,7 +164,7 @@ const RegisterCollect = () => {
                 status: "warning",
                 duration: 5000,
                 isClosable: true,
-            }) 
+            })
         }else{
             return toast({
                 title: "Erro!",
@@ -170,10 +172,10 @@ const RegisterCollect = () => {
                 status: "error",
                 duration: 5000,
                 isClosable: true,
-            }) 
+            })
         }
     }
-    
+
     // useEffect(() => {
     //     if(data != '')
     //     return handleSubmit
@@ -181,7 +183,7 @@ const RegisterCollect = () => {
 
     useEffect(() => {
         const getSalesChannelInfo = async () => {
-            var res = await api.getSalesChannel()
+            var res = await api.getSalesChannel(token)
             setSalesChannel(res.sales_channel)
         }
 
@@ -190,19 +192,19 @@ const RegisterCollect = () => {
 
     return (
         <Content pageTitle="Registrar Coleta">
-            <Flex 
+            <Flex
                 bgGradient="linear(to-b, #f1f1f1, #fff)"
                 position="relative"
                 w="100%"
                 h="100%"
                 justifyContent="center"
             >
-                <Flex 
-                    justifyContent="center"  
-                    alignItems="flex-start" 
-                    flexDir="row" 
-                    p="24px" 
-                    w="100%" 
+                <Flex
+                    justifyContent="center"
+                    alignItems="flex-start"
+                    flexDir="row"
+                    p="24px"
+                    w="100%"
                     maxH="400px"
                     maxW="1200px"
                 >
@@ -243,12 +245,12 @@ const RegisterCollect = () => {
 
                                 <FormControl mt="2rem">
                                     <Button type="submit" leftIcon={<FaTruckLoading/>} colorScheme="yellow" size="lg" color="white">Registrar</Button>
-                                    <Button 
-                                        leftIcon={<ImBarcode/>} 
-                                        onClick={() => handleActiveReader(readerType == 'barcode' ? null : 'barcode')} 
+                                    <Button
+                                        leftIcon={<ImBarcode/>}
+                                        onClick={() => handleActiveReader(readerType == 'barcode' ? null : 'barcode')}
                                         colorScheme={readerType == 'barcode' ? 'red' : 'green'}
-                                        ml="1rem" 
-                                        size="lg" 
+                                        ml="1rem"
+                                        size="lg"
                                         color="white"
                                     >
                                         {readerType == 'barcode' ? 'Parar de usar o' : 'Usar'} leitor de código de barras
@@ -290,7 +292,7 @@ const RegisterCollect = () => {
 
 export const getServerSideProps = async (context) => {
     let cookies = ''
-  
+
     cookies = context.req.headers.cookie
 
     try {
@@ -303,8 +305,8 @@ export const getServerSideProps = async (context) => {
               }
           }
     }
-    
-    
+
+
     if(!cookies.token){
       return {
           redirect: {
@@ -314,13 +316,13 @@ export const getServerSideProps = async (context) => {
         }
     }
 
-    
+
     // const info = await fetch(config.base_api+'/user/info', {
     //    headers: {
     //        'Authorization': `Bearer ${cookies.token}`
     //    }
     // })
-    
+
     // const json = await info.json()
 
 
@@ -332,7 +334,7 @@ export const getServerSideProps = async (context) => {
     //    }
     //  }
     // }
-  
+
     return {props: { ok: true }}
 }
 

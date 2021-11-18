@@ -13,10 +13,6 @@ const Content = (props) => {
     const router = useRouter()
     const [close, setClose] = useState(false)
 
-    useEffect(() => {
-        console.log(close)
-    }, [close])
-
     return (
         <>
             <Header pageTitle={props.pageTitle} />
@@ -24,13 +20,13 @@ const Content = (props) => {
                 <>
                     <Sidebar close={close} setClose={setClose} />
                     <Topbar close={close} setClose={setClose} />
-                    <Flex 
-                        m="0" 
-                        p="0" 
-                        w="100%" 
-                        bgColor="gray.100" 
+                    <Flex
+                        m="0"
+                        p="0"
+                        w="100%"
+                        bgColor="gray.100"
                         h="100vh"
-                        transition="0.2s" 
+                        transition="0.2s"
                         className={`content ${close ? 'close' : 'open overlay'}`}
                     >
                         {props.children}
@@ -38,13 +34,13 @@ const Content = (props) => {
                 </>
             }
             {!router.pathname.includes('painel') &&
-                <Flex 
-                    m="0" 
-                    p="0" 
-                    w="100%" 
-                    bgColor="gray.100" 
+                <Flex
+                    m="0"
+                    p="0"
+                    w="100%"
+                    bgColor="gray.100"
                     h="100vh"
-                    transition="0.2s" 
+                    transition="0.2s"
                     className={`content`}
                 >
                     {props.children}

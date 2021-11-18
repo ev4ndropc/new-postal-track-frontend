@@ -42,14 +42,25 @@ const apiFetchPost = async (endpoint, body, user_token = false) => {
 }
 
 
-const apiFetchGet = async (endpoint, user_token = false) => {
+const apiFetchGet = async (endpoint, body, user_token = false) => {
   let headers = {}
 
   if(user_token){
-    let token = Cookies.get('token')
     headers = {
-      'Authorization': `Bearer ${token}`
+      'Authorization': `Bearer ${user_token}`
     }
+
+    const res = await fetch(`${BASEAPI+endpoint}`,{
+      headers
+    })
+
+    const json = await res.json()
+
+    if(json.notallowed){
+      return json
+    }
+
+    return json
   }
 
   const res = await fetch(`${BASEAPI+endpoint}`,{
@@ -152,6 +163,24 @@ const  ApiFunctions = {
     const json = await apiFetchGet(
       `/get/user_info`,
       {},
+      token
+    )
+    return json
+  },
+
+  updateUserInfo:async (data) => {
+    const json = await apiFetchPut(
+      `/edit/user_info`,
+      data,
+      true
+    )
+    return json
+  },
+
+  updateStoreName:async(storeName) => {
+    const json = await apiFetchPut(
+      `/update/store_name?store_name=${storeName}`,
+      {},
       true
     )
     return json
@@ -166,11 +195,11 @@ const  ApiFunctions = {
     return json
   },
 
-  searchPackage:async(type, searchPackage) => {
+  searchPackage:async(type, searchPackage, token) => {
     const json = await apiFetchGet(
       `/search/package?type=${type}&searchFor=${searchPackage}`,
       {},
-      true
+      token
     )
     return json
   },
@@ -205,21 +234,21 @@ const  ApiFunctions = {
     return json
   },
 
-  getPackage:async(code) => {
+  getPackage:async(code, token) => {
     const json = await apiFetchGet(
       `/get/package?code=${code}`,
       {},
-      true
+      token
     )
 
     return json
   },
 
-  getPackageInfo:async() => {
+  getPackageInfo:async(token) => {
     const json = await apiFetchGet(
       `/package/info`,
       {},
-      true
+      token
     )
 
     return json
@@ -245,21 +274,21 @@ const  ApiFunctions = {
     return json
   },
 
-  trackingCode:async(code) => {
+  trackingCode:async(code, token) => {
     const json = await apiFetchGet(
       `/tracking/code?code=${code}`,
       {},
-      true
+      token
     )
 
     return json
   },
 
-  getSalesChannel:async () => {
+  getSalesChannel:async (token) => {
     const json = await apiFetchGet(
       `/get/sales_channel`,
       {},
-      true
+      token
     )
 
     return json
@@ -275,31 +304,31 @@ const  ApiFunctions = {
     return json
   },
 
-  listCollects:async(page, searchDate) => {
+  listCollects:async(page, searchDate, token) => {
     if(searchDate == undefined) {
       const json = await apiFetchGet(
         `/list/collects?page=${page}`,
         {},
-        true
+        token
       )
-  
+
       return json
     }else{
       const json = await apiFetchGet(
         `/list/collects?page=${page}&search_date=${searchDate}`,
         {},
-        true
+        token
       )
-  
+
       return json
     }
   },
 
-  findCollect:async(identifier) => {
+  findCollect:async(identifier, token) => {
     const json = await apiFetchGet(
       `/find/collects?identifier=${identifier}`,
       {},
-      true
+      token
     )
 
     return json

@@ -81,11 +81,11 @@ export default function Signin () {
 
       doLogin(json.token, rememberPassword)
       const data = await api.getUserInfo()
-      
+
       dispatch({
         type: 'SET_DATA',
         payload: data.data
-    })
+      })
 
 
       setTimeout(() => {

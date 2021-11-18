@@ -23,6 +23,7 @@ import { IoLogoWhatsapp } from 'react-icons/io'
 import Content from '../../../components/Content'
 import Header from '../../../components/Header'
 
+import config from '../../../config'
 import useApi from '../../../helpers/Api'
 import { doLogin } from '../../../helpers/AuthHandler'
 
@@ -43,6 +44,7 @@ export default function Signin () {
   const [loading, setLoading] = useState(false)
   const [isInvalid, setIsInvalid] = useState(false)
   const [checkedTerms, setCheckedTerms] = useState(false)
+
 
   const handleSubmit = async () => {
     setIsInvalid(false)

@@ -73,7 +73,7 @@ button:focus {
 
 
 .sidebar-close-button {
-    display: none;
+    display: none!important;
 }
 
 .topbar button {
@@ -129,7 +129,7 @@ button:focus {
         margin: 0px 4px!important;
         width: 50px!important;
     }
-    
+
 }
 
 @media (max-width:778px) {
@@ -178,6 +178,10 @@ button:focus {
     .content.close {
         padding-left: 0px;
     }
+
+    .sidebar-close-button {
+      display: flex!important;
+    }
 }
 
 @media (max-width: 550px) {
@@ -217,9 +221,5 @@ button:focus {
         padding: 4px;
         margin: 0px 4px;
         font-size: 12px;
-    }
-
-    .sidebar-close-button {
-        display: flex!important;
     }
 }
